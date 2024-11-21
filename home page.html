@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Management System - Cyberpunk Style</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #1b1b1b, #000000);
+            color: #00f0ff;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            color: #00f0ff;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            text-shadow: 0px 0px 5px #00f0ff;
+            transition: background 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        nav .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #00f0ff;
+            text-decoration: none;
+            padding: 8px 12px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            text-shadow: 0px 0px 5px #00f0ff;
+        }
+
+        nav ul li a:hover {
+            background: #ff007f;
+            border-radius: 5px;
+            transform: scale(1.05);
+        }
+
+        .login-btn {
+            background: #ff007f;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #fff;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0px 0px 10px #ff007f;
+        }
+
+        .login-btn:hover {
+            background: #ff00b3;
+            transform: scale(1.05);
+        }
+
+        .hero-section {
+            background: url('https://cyberpunk-cityscape.com/city.jpg') no-repeat center center/cover;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-in-out forwards;
+        }
+
+        .hero-section h1 {
+            font-size: 56px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px #00f0ff, 0 0 20px #ff007f;
+        }
+
+        .hero-section p {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #ff007f;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #ff007f, #00f0ff);
+            color: #fff;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0px 0px 10px #00f0ff, 0px 0px 15px #ff007f;
+        }
+
+        .cta-btn:hover {
+            background: linear-gradient(135deg, #ff00b3, #00ffde);
+            transform: scale(1.05);
+        }
+
+        .info-section {
+            padding: 60px 20px;
+            background: #111;
+            color: #00f0ff;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .info-section h2 {
+            font-size: 36px;
+            text-shadow: 0 0 10px #00f0ff, 0 0 20px #ff007f;
+        }
+
+        .info-section p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            text-shadow: 0 0 10px #ff007f;
+        }
+
+        .info-section .services {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+
+        .info-section .services .service {
+            width: 30%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #00f0ff, 0px 0px 15px #ff007f;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .info-section .services .service h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #ff007f;
+        }
+
+        .info-section .services .service p {
+            font-size: 16px;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: #00f0ff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 14px;
+            text-shadow: 0px 0px 5px #00f0ff;
+        }
+
+        /* Add animations for fading in and out */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOutDown {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease-in-out forwards;
+        }
+
+        .fade-out {
+            animation: fadeOutDown 1s ease-in-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">Waste Management Co.</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="http://127.0.0.1:5500/Hackathon.html" class="login-btn">Login</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero-section">
+        <h1>Welcome to Waste Management Co.</h1>
+        <p>Your partner in efficient and eco-friendly waste solutions.</p>
+        <a href="#contact" class="cta-btn">Get Started</a>
+    </section>
+
+    <section class="info-section" id="services">
+        <h2>Our Services</h2>
+        <p>We offer comprehensive waste management solutions for both residential and commercial needs. Our services include waste tracking, efficient recycling, and community engagement.</p>
+        <div class="services">
+            <div class="service">
+                <h3>Waste Tracking</h3>
+                <p>Track your waste collection and disposal process in real-time, ensuring transparency and accountability.</p>
+            </div>
+            <div class="service">
+                <h3>Efficient Recycling</h3>
+                <p>Our recycling services focus on maximizing resource recovery and minimizing environmental impact.</p>
+            </div>
+            <div class="service">
+                <h3>Community Engagement</h3>
+                <p>Engage with your community to participate in waste management initiatives and promote sustainable practices.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section" id="about">
+        <h2>About Us</h2>
+        <p>We are committed to creating a sustainable future by providing innovative waste management solutions. Our team is dedicated to promoting reduce, reuse, and recycle principles while ensuring high safety and environmental standards.</p>
+    </section>
+
+    <section class="info-section" id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or would like to learn more about our services, feel free to reach out to us. We're here to help!</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Waste Management Co. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to handle scroll animations
+        function handleScrollAnimations() {
+            const sections = document.querySelectorAll('.info-section');
+
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    section.classList.add('fade-in');
+                    section.classList.remove('fade-out');
+                    const services = section.querySelectorAll('.service');
+                    services.forEach((service, index) => {
+                        if (rect.top < window.innerHeight) {
+                            service.style.transitionDelay = `${index * 0.1}s`; // Staggered entrance
+                            service.classList.add('fade-in');
+                            service.classList.remove('fade-out');
+                        } else {
+                            service.classList.add('fade-out');
+                            service.classList.remove('fade-in');
+                        }
+                    });
+                } else {
+                    section.classList.add('fade-out');
+                    section.classList.remove('fade-in');
+                }
+            });
+        }
+
+        // Initial call to set the correct animations on load
+        handleScrollAnimations();
+
+        // Trigger scroll animations on scroll event
+        window.addEventListener('scroll', handleScrollAnimations);
+    </script>
+</body>
+
+</html>

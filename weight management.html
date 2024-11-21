@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weighbridge Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #6a89cc, #b8e994);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .input-group input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+            outline: none;
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .report-container {
+            margin-top: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .report-container h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .report-container table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .report-container table,
+        .report-container th,
+        .report-container td {
+            border: 1px solid #dee2e6;
+        }
+
+        .report-container th,
+        .report-container td {
+            padding: 12px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .report-container th {
+            background-color: #f1f3f5;
+            color: #495057;
+        }
+
+        .delete-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Weighbridge Management</h2>
+        <div class="input-group">
+            <label for="incomingWeight">Incoming Waste Load (kg)</label>
+            <input type="number" id="incomingWeight" placeholder="Enter Incoming Weight" step="0.01">
+        </div>
+        <div class="input-group">
+            <label for="outgoingWeight">Outgoing Waste Load (kg)</label>
+            <input type="number" id="outgoingWeight" placeholder="Enter Outgoing Weight" step="0.01">
+        </div>
+        <button class="btn" onclick="recordWeight()">Record Weight</button>
+        <div class="report-container">
+            <h3>Weight Report</h3>
+            <table id="weightReport">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Incoming (kg)</th>
+                        <th>Outgoing (kg)</th>
+                        <th>Net Weight (kg)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Report rows will be added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function recordWeight() {
+            const incomingWeight = parseFloat(document.getElementById('incomingWeight').value);
+            const outgoingWeight = parseFloat(document.getElementById('outgoingWeight').value);
+            const netWeight = incomingWeight - outgoingWeight;
+
+            if (isNaN(incomingWeight) || isNaN(outgoingWeight)) {
+                alert("Please enter valid numbers for both weights.");
+                return;
+            }
+
+            const reportTable = document.getElementById('weightReport').getElementsByTagName('tbody')[0];
+            const newRow = reportTable.insertRow();
+
+            const dateCell = newRow.insertCell(0);
+            const incomingCell = newRow.insertCell(1);
+            const outgoingCell = newRow.insertCell(2);
+            const netCell = newRow.insertCell(3);
+            const actionCell = newRow.insertCell(4);
+
+            const currentDate = new Date().toLocaleDateString();
+
+            dateCell.innerHTML = currentDate;
+            incomingCell.innerHTML = incomingWeight.toFixed(2);
+            outgoingCell.innerHTML = outgoingWeight.toFixed(2);
+            netCell.innerHTML = netWeight.toFixed(2);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'delete-btn';
+            deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+            deleteButton.onclick = function () {
+                if (confirm('Are you sure you want to delete this entry?')) {
+                    newRow.remove();
+                }
+            };
+
+            actionCell.appendChild(deleteButton);
+
+            alert("Weight recorded successfully!");
+
+            // Optionally, you can also send this data to your backend for further processing
+            // and integration with other modules (e.g., waste tracking).
+        }
+    </script>
+</body>
+
+</html>

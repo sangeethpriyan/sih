@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Changed to flex-start for scroll */
+            height: 100vh;
+            overflow: hidden; /* Remove default scroll */
+            position: relative;
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            background-size: 200% 200%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 100% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.toptal.com/designers/subtlepatterns/patterns/double-bubble.png');
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: -1;
+            mix-blend-mode: overlay;
+        }
+
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .main-container {
+            background: linear-gradient(145deg, #6e45e2, #88d3ce);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            width: 320px;
+            text-align: center;
+            position: relative;
+            transform: scale(0.95);
+            animation: scaleIn 0.6s ease-in-out forwards;
+            max-height: 90vh; /* Add this to limit height */
+            overflow-y: auto; /* Add scroll for the container */
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .main-container h2 {
+            margin-bottom: 20px;
+            font-size: 26px;
+            color: #fff;
+            animation: textGlow 1.5s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            }
+
+            50% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            }
+
+            100% {
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+            }
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            background-color: #ff8c00;
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            font-size: 18px;
+            border-radius: 8px;
+            margin: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-container button::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+            transition: transform 0.5s ease;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .button-container button:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .button-container button:hover {
+            background-color: #ff6f00;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .login-form {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .login-form.active {
+            display: flex;
+            opacity: 1;
+            transform: scale(1);
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+
+        .login-form.inactive {
+            animation: fadeOut 0.4s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+        }
+
+        .login-form form {
+            background: linear-gradient(145deg, #ffffff, #f2f2f2);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 360px;
+            transform: translateY(-20px);
+            transition: transform 0.4s ease;
+        }
+
+        .login-form.active form {
+            transform: translateY(0);
+        }
+
+        .login-form h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #333;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .login-form input {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-form input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+        }
+
+        .login-form button {
+            background-color: #28a745;
+            border: none;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .login-form button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        .close-btn {
+            background-color: #dc3545;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #c82333;
+        }
+
+        .close-btn:active {
+            background-color: #bd2130;
+        }
+
+        /* Custom scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 8px; /* Width of the scrollbar */
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.2); /* Background of the scrollbar track */
+            border-radius: 10px; /* Rounded corners for the track */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #88d3ce; /* Color of the scrollbar thumb */
+            border-radius: 10px; /* Rounded corners for the thumb */
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f0edeb; /* Color of the thumb on hover */
+        }
+    </style>
+</head>
+    <div id="particles-js"></div>
+
+    <div class="main-container">
+        <h2>Select a Section</h2>
+        <div class="button-container">
+            <button onclick="showLogin('waste-tracking')">Waste Tracking</button>
+            <button onclick="showLogin('weighbridge-management')">Weighbridge Management</button>
+            <button onclick="showLogin('waste-compliance')">Waste Compliance</button>
+            <button onclick="showLogin('hazardous-waste-management')">Hazardous Waste Management</button>
+            <button onclick="showLogin('asset-maintenance')">Asset Maintenance</button>
+            <button onclick="showLogin('waste-recycling')">Waste Recycling</button>
+            <button onclick="showLogin('ecotrack-daily')">Ecotrack Daily</button>
+            <button onclick="showLogin('vendors-point-system')">Vendors Point System</button> <!-- New Button -->
+        </div>
+    </div>
+
+    <div id="waste-tracking" class="login-form">
+        <button class="close-btn" onclick="hideLogin('waste-tracking')">X</button>
+        <form onsubmit="handleLogin(event, 'http://127.0.0.1:5500/Untitled-1.html')">
+            <h2>Waste Tracking Login</h2>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="weighbridge-management" class="login-form">
+        <button class="close-btn" onclick="hideLogin('weighbridge-management')">X</button>
+        <form onsubmit="handleLogin(event, 'http://127.0.0.1:5500/weight%20management.html')">
+            <h2>Weighbridge Management Login</h2>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+    <div id="waste-compliance" class="login-form">
+        <button class="close-btn" onclick="hideLogin('waste-compliance')">X</button>
+        <form onsubmit="handleLogin(event, 'http://127.0.0.1:5500/Waste%20compilance.html')">
+            <h2>Waste Compliance Login</h2>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+    <div id="hazardous-waste-management" class="login-form">
+        <button class="close-btn" onclick="hideLogin('hazardous-waste-management')">X</button>
+        <form onsubmit="handleLogin(event, 'http://127.0.0.1:5500/Hazardous%20mangement.html')">
+            <h2>Hazardous Waste Management Login</h2>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+    <div id="asset-maintenance" class="login-form">
+        <button class="close-btn" onclick="hideLogin('asset-maintenance')">X</button>
+        <form onsubmit="handleLogin(event, 'http://127.0.0.1:5500/Asset%20management.html')">
+            <h2>Asset Maintenance Login</h2>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+    <div id="waste-recycling" class="login-form">
+        <button class="close-btn" onclick="hideLogin('waste-recycling')">X</button>
+        <form onsubmit="handleLogin(event, 'http://127.0.0.1:5500/Waste%20recycling.html')">
+            <h2>Waste Recycling Login</h2>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+    <div id="ecotrack-daily" class="login-form">
+        <button class="close-btn" onclick="hideLogin('ecotrack-daily')">X</button>
+        <form onsubmit="handleLogin(event, 'http://127.0.0.1:5500/ecotrack%20daily.html')">
+            <h2>Ecotrack Daily Login</h2>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="vendors-point-system" class="login-form"> <!-- New Login Form -->
+        <button class="close-btn" onclick="hideLogin('vendors-point-system')">X</button>
+        <form onsubmit="handleLogin(event, 'http://127.0.0.1:5500/user.html')">
+            <h2>Vendors Point System Login</h2>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+        // Particles.js configuration
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                }
+            },
+            "retina_detect": true
+        });
+
+        function showLogin(formId) {
+            document.getElementById(formId).classList.add('active');
+            document.getElementById(formId).classList.remove('inactive');
+        }
+
+        function hideLogin(formId) {
+            document.getElementById(formId).classList.add('inactive');
+            setTimeout(() => document.getElementById(formId).classList.remove('active'), 400);
+        }
+
+        function handleLogin(event, url) {
+            event.preventDefault();
+            window.location.href = url;
+        }
+    </script>
+</body>
+
+</html>

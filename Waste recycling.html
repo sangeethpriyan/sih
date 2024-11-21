@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Recycling</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e3f2fd;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #00796b;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section div {
+            background-color: #009688;
+            padding: 25px;
+            border-radius: 10px;
+            width: 48%;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .section div:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%) rotate(45deg);
+            animation: rotateBg 15s linear infinite;
+        }
+
+        .section div h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .section div p {
+            font-size: 1.2em;
+            z-index: 1;
+            position: relative;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .button-container button {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #388e3c;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotateBg {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                flex-direction: column;
+            }
+
+            .section div {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        .details-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            justify-content: space-around;
+        }
+
+        .details-container .detail-card {
+            background-color: #ffc107;
+            color: white;
+            border-radius: 10px;
+            width: 45%;
+            padding: 20px;
+            margin: 10px 0;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .details-container .detail-card:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%) rotate(45deg);
+            animation: rotateBg 15s linear infinite;
+        }
+
+        .details-container .detail-card h4 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .details-container .detail-card p {
+            font-size: 1.1em;
+            z-index: 1;
+            position: relative;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Waste Recycling</h2>
+
+        <div class="section">
+            <div>
+                <h3>Recyclable Material Identification</h3>
+                <p>Identify and categorize materials that can be recycled.</p>
+            </div>
+
+            <div>
+                <h3>Drop-off Points</h3>
+                <p>Find nearby recycling centers or drop-off locations.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div>
+                <h3>Recycling Progress Tracker</h3>
+                <p>Track your progress towards recycling goals.</p>
+            </div>
+
+            <div>
+                <h3>Incentive Programs</h3>
+                <p>Earn rewards for consistent recycling efforts.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div style="width: 100%;">
+                <h3>Education</h3>
+                <p>Learn how to recycle different types of materials effectively.</p>
+            </div>
+        </div>
+
+        <div class="details-container">
+            <div class="detail-card">
+                <h4>Material Identification</h4>
+                <p>Use the app to scan items and determine recyclability.</p>
+            </div>
+
+            <div class="detail-card">
+                <h4>Drop-off Point Locator</h4>
+                <p>Find the nearest recycling center and get directions.</p>
+            </div>
+
+            <div class="detail-card">
+                <h4>Progress Tracking</h4>
+                <p>Monitor how much waste you've recycled over time.</p>
+            </div>
+
+            <div class="detail-card">
+                <h4>Rewards & Incentives</h4>
+                <p>Redeem points for discounts and other rewards.</p>
+            </div>
+
+            <div class="detail-card">
+                <h4>Recycling Education</h4>
+                <p>Access tutorials on proper recycling techniques.</p>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button onclick="window.location.href='recycling-dashboard.html'">Go to Dashboard</button>
+        </div>
+    </div>
+</body>
+
+</html>

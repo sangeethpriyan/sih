@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Maintenance Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .card {
+            background-color: #4caf50;
+            color: white;
+            width: 45%;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .card:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%) rotate(45deg);
+            animation: rotateBg 15s linear infinite;
+        }
+
+        .card h3 {
+            z-index: 1;
+            position: relative;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            z-index: 1;
+            position: relative;
+            font-size: 1.2em;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button-container button {
+            background-color: #008cba;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #005f75;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotateBg {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+                margin: 15px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Asset Maintenance Dashboard</h2>
+
+        <div class="dashboard">
+            <div class="card">
+                <h3>Equipment Tracking</h3>
+                <p>Monitor equipment in real-time.</p>
+                <button onclick="window.location.href='equipment-tracking.html'">View Equipment</button>
+            </div>
+
+            <div class="card">
+                <h3>Maintenance Scheduling</h3>
+                <p>Schedule and manage maintenance tasks.</p>
+                <button onclick="window.location.href='maintenance-scheduling.html'">View Schedule</button>
+            </div>
+
+            <div class="card">
+                <h3>Service Logs</h3>
+                <p>View and maintain service logs.</p>
+                <button onclick="window.location.href='service-logs.html'">View Logs</button>
+            </div>
+
+            <div class="card">
+                <h3>Spare Parts Inventory</h3>
+                <p>Manage and track spare parts.</p>
+                <button onclick="window.location.href='spare-parts-inventory.html'">View Inventory</button>
+            </div>
+
+            <div class="card">
+                <h3>Preventive Maintenance Alerts</h3>
+                <p>Set and view maintenance alerts.</p>
+                <button onclick="window.location.href='maintenance-alerts.html'">View Alerts</button>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button onclick="window.location.href='asset-overview.html'">Back to Overview</button>
+        </div>
+    </div>
+</body>
+<script>
+    // Functions to load specific content dynamically
+    function loadEquipmentTracking() {
+        const contentDiv = document.getElementById('dynamicContent');
+        contentDiv.innerHTML = `<h3>Equipment Tracking</h3><p>Displaying real-time tracking data...</p>`;
+    }
+
+    function loadMaintenanceScheduling() {
+        const contentDiv = document.getElementById('dynamicContent');
+        contentDiv.innerHTML = `<h3>Maintenance Scheduling</h3><p>Displaying scheduled maintenance tasks...</p>`;
+    }
+
+    function loadServiceLogs() {
+        const contentDiv = document.getElementById('dynamicContent');
+        contentDiv.innerHTML = `<h3>Service Logs</h3><p>Displaying service logs and records...</p>`;
+    }
+
+    function loadSparePartsInventory() {
+        const contentDiv = document.getElementById('dynamicContent');
+        contentDiv.innerHTML = `<h3>Spare Parts Inventory</h3><p>Displaying spare parts inventory...</p>`;
+    }
+
+    function loadMaintenanceAlerts() {
+        const contentDiv = document.getElementById('dynamicContent');
+        contentDiv.innerHTML = `<h3>Preventive Maintenance Alerts</h3><p>Displaying maintenance alerts and notifications...</p>`;
+    }
+
+    // Function to navigate to the overview page
+    function goToOverview() {
+        window.location.href = 'asset-overview.html';
+    }
+</script>
+</html>

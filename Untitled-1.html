@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Tracking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+            background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 25%, transparent 25%),
+                linear-gradient(225deg, rgba(255, 255, 255, 0.9) 25%, transparent 25%),
+                linear-gradient(45deg, rgba(255, 255, 255, 0.9) 25%, transparent 25%),
+                linear-gradient(315deg, rgba(255, 255, 255, 0.9) 25%, transparent 25%);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 0, 15px -15px, 0px 15px;
+        }
+
+        .container {
+            position: relative;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.9));
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .track-btn {
+            background: linear-gradient(145deg, #30b658, #28a745);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+            width: 100%;
+        }
+
+        .track-btn:hover {
+            background: linear-gradient(145deg, #28a745, #218838);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 25px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .icon-container .icon {
+            background: linear-gradient(145deg, #30b658, #28a745);
+            color: white;
+            padding: 18px;
+            border-radius: 50%;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .icon-container .icon:hover {
+            background: linear-gradient(145deg, #28a745, #218838);
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .map-container {
+            margin-top: 35px;
+            position: relative;
+            height: 300px;
+            width: 100%;
+            border-radius: 12px;
+            animation: fadeInUp 1.4s ease-out;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Overlay Panel Styles */
+        .overlay-panel {
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: calc(100% - 20px);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .overlay-panel.active {
+            display: block;
+        }
+
+        .overlay-panel .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .overlay-panel h3 {
+            margin-top: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Waste Tracking Dashboard</h2>
+        <div class="map-container">
+            <div id="map"></div>
+            <!-- Notifications Overlay -->
+            <div id="notificationsPanel" class="overlay-panel">
+                <span class="close" onclick="closePanel('notificationsPanel')">&times;</span>
+                <h3>Notifications</h3>
+                <p>Here are your latest notifications:</p>
+                <ul>
+                    <li>Waste truck arrived at location A.</li>
+                    <li>Sensor at location B is malfunctioning.</li>
+                    <li>Waste collection at location C completed.</li>
+                </ul>
+            </div>
+
+            <!-- Database Overlay -->
+            <div id="databasePanel" class="overlay-panel">
+                <span class="close" onclick="closePanel('databasePanel')">&times;</span>
+                <h3>Database</h3>
+                <p>View the waste management data here:</p>
+                <ul>
+                    <li>Database Entry 1: Details...</li>
+                    <li>Database Entry 2: Details...</li>
+                    <li>Database Entry 3: Details...</li>
+                </ul>
+            </div>
+
+            <!-- Statistics Overlay -->
+            <div id="statisticsPanel" class="overlay-panel">
+                <span class="close" onclick="closePanel('statisticsPanel')">&times;</span>
+                <h3>Statistics</h3>
+                <p>Waste tracking statistics are displayed here:</p>
+                <ul>
+                    <li>Chart 1: Waste collection efficiency.</li>
+                    <li>Chart 2: Total waste collected.</li>
+                    <li>Chart 3: Collection frequency per location.</li>
+                </ul>
+            </div>
+        </div>
+        <button class="track-btn" onclick="startTracking()">Start Waste Tracking</button>
+        <div class="icon-container">
+            <div class="icon" onclick="openPanel('notificationsPanel')"><i class="fas fa-bell"></i></div>
+            <div class="icon" onclick="openPanel('databasePanel')"><i class="fas fa-database"></i></div>
+            <div class="icon" onclick="openPanel('statisticsPanel')"><i class="fas fa-chart-line"></i></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script>
+        let map;
+
+        // Initialize the map with a default location
+        function initializeMap() {
+            map = L.map('map').setView([40.7128, -74.0060], 13); // Coordinates for New York City
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Add a marker at the default location
+            L.marker([40.7128, -74.0060]).addTo(map)
+                .bindPopup('Default Location: New York City')
+                .openPopup();
+        }
+
+        // Function to start tracking the user's location
+        function startTracking() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError, {
+                    enableHighAccuracy: true,
+                    timeout: 10000, // Increased timeout for slow networks
+                    maximumAge: 0
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Update the map with the user's current position
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            console.log("Latitude: " + latitude + ", Longitude: " + longitude);
+
+            map.setView([latitude, longitude], 13);
+
+            L.marker([latitude, longitude]).addTo(map)
+                .bindPopup('Your Current Location: ' + latitude + ', ' + longitude)
+                .openPopup();
+        }
+
+        // Error handling for geolocation
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get your location timed out. Please try again.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        // Open the overlay panel
+        function openPanel(panelId) {
+            document.getElementById(panelId).classList.add('active');
+        }
+
+        // Close the overlay panel
+        function closePanel(panelId) {
+            document.getElementById(panelId).classList.remove('active');
+        }
+
+        // Initialize the map on page load
+        window.onload = initializeMap;
+    </script>
+</body>
+
+</html>

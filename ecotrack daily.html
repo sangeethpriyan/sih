@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack Daily</title>
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            text-align: center;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        h1 {
+            color: #2e8b57;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            animation: zoomIn 1s ease-in-out;
+        }
+
+        .section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .section div {
+            background-color: #20b2aa;
+            padding: 25px;
+            border-radius: 10px;
+            width: 48%;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .section div:hover {
+            transform: scale(1.05);
+        }
+
+        .section div:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%) rotate(45deg);
+            animation: rotateBg 15s linear infinite;
+        }
+
+        .section div h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .section div p {
+            font-size: 1.2em;
+            z-index: 1;
+            position: relative;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .button-container button {
+            background-color: #32cd32;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #228b22;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotateBg {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                flex-direction: column;
+            }
+
+            .section div {
+                width: 100%;
+            }
+        }
+
+        .details-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            justify-content: space-around;
+        }
+
+        .details-container .detail-card {
+            background-color: #ffa500;
+            color: white;
+            border-radius: 10px;
+            width: 45%;
+            padding: 20px;
+            margin: 10px 0;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .details-container .detail-card:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%) rotate(45deg);
+            animation: rotateBg 15s linear infinite;
+        }
+
+        .details-container .detail-card h4 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .details-container .detail-card p {
+            font-size: 1.1em;
+            z-index: 1;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>EcoTrack Daily</h1>
+
+        <div class="section">
+            <div>
+                <h3>Daily Environmental Tips</h3>
+                <p>Receive daily tips on how to reduce, reuse, and recycle effectively.</p>
+            </div>
+
+            <div>
+                <h3>User Activity Tracker</h3>
+                <p>Track your engagement in sustainable practices over time.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div>
+                <h3>Community Challenges</h3>
+                <p>Participate in eco-friendly challenges within your community.</p>
+            </div>
+
+            <div>
+                <h3>Personalized Recommendations</h3>
+                <p>Get suggestions tailored to your activity and location.</p>
+            </div>
+        </div>
+
+        <div class="details-container">
+            <div class="detail-card">
+                <h4>Tip of the Day</h4>
+                <p>Learn new ways to make your daily habits more eco-friendly.</p>
+            </div>
+
+            <div class="detail-card">
+                <h4>Activity Dashboard</h4>
+                <p>Monitor your progress and see how you stack up against others.</p>
+            </div>
+
+            <div class="detail-card">
+                <h4>Join a Challenge</h4>
+                <p>Engage with others to promote sustainability in fun and rewarding ways.</p>
+            </div>
+
+            <div class="detail-card">
+                <h4>Personalized Eco Tips</h4>
+                <p>Receive recommendations based on your habits and location.</p>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button onclick="window.location.href='ecotrack-dashboard.html'">Go to EcoTrack Dashboard</button>
+        </div>
+    </div>
+</body>
+
+</html>

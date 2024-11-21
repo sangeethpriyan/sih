@@ -1,0 +1,141 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif; /* Modern, clean font */
+    background-color: #f8f9fa; /* Very light grey background for a subtle effect */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    background-color: #ffffff; /* White background for content */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    padding: 30px; /* Ample padding */
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #343a40; /* Darker color for better contrast */
+    font-size: 2.8em; /* Larger title size */
+    margin: 0; /* Reset margin */
+    padding: 15px 0; /* Added padding for spacing */
+    border-bottom: 3px solid #007BFF; /* Bold underline */
+    text-transform: uppercase; /* Uppercase letters for elegance */
+}
+
+/* Section Titles */
+h2 {
+    color: #007BFF; /* Elegant blue for section titles */
+    font-size: 2em; /* Increased size for emphasis */
+    margin: 20px 0 10px; /* Consistent spacing */
+    font-weight: 600; /* Bold weight for section headers */
+}
+
+/* Inventory Controls */
+.inventory-controls {
+    margin-bottom: 20px; /* Increased margin */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space buttons evenly */
+    align-items: center; /* Center items vertically */
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 12px; /* Increased padding */
+    margin: 5px;
+    border: 2px solid #007BFF; /* Elegant blue border */
+    border-radius: 6px; /* Slightly rounded corners */
+    transition: border-color 0.3s; /* Smooth transition */
+    font-size: 1em; /* Consistent font size */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #0056b3; /* Darker blue on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Button Styles */
+button {
+    padding: 12px 18px; /* Increased padding */
+    background-color: #007BFF; /* Classy blue */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+    font-weight: bold; /* Bold text for emphasis */
+    font-size: 1em; /* Consistent button size */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse; /* No gaps between cells */
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 14px; /* Increased padding for readability */
+    text-align: left;
+    border: 1px solid #ddd; /* Light grey border */
+    transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+th {
+    background-color: #007BFF; /* Blue background for header */
+    color: white; /* White text for header */
+    font-weight: bold; /* Bold text for header */
+    text-transform: uppercase; /* Uppercase for headers */
+}
+
+tr:hover {
+    background-color: rgba(0, 123, 255, 0.15); /* Light blue on row hover */
+}
+
+/* Hazardous and Non-Hazardous Styles */
+.hazardous {
+    background-color: rgba(255, 0, 0, 0.3); /* More vivid light red for hazardous */
+    font-weight: bold; /* Emphasize hazardous items */
+}
+
+.non-hazardous {
+    background-color: rgba(0, 255, 0, 0.3); /* More vivid light green for non-hazardous */
+    font-weight: bold; /* Emphasize non-hazardous items */
+}
+
+/* Progress Bar Styles */
+.progress-bar {
+    width: 100%;
+    background-color: #e9ecef; /* Light grey for progress background */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Clip overflow */
+    margin-bottom: 10px; /* Space below progress bar */
+}
+
+.progress {
+    height: 20px;
+    background-color: #007BFF; /* Blue for progress */
+    width: 0; /* Start at 0 width */
+    transition: width 0.5s; /* Smooth transition for width change */
+}
+
+/* Instructions */
+.instructions {
+    font-size: 1em; /* Standard font size for instructions */
+    color: #6c757d; /* Subtle grey color for less emphasis */
+    margin: 20px 0; /* Margin for spacing */
+    border-left: 5px solid #007BFF; /* Left border for emphasis */
+    padding-left: 15px; /* Padding for text */
+}

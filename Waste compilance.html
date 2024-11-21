@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Compliance</title>
+    <link rel="stylesheet" href="Naman.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Waste Compliance Management</h1>
+            <p>Ensure your waste management processes are compliant with regulations.</p>
+        </header>
+
+        <section class="compliance-monitoring">
+            <h2>Regulatory Compliance Monitoring</h2>
+            <p>Track and monitor compliance with local and international waste management regulations.</p>
+            <div class="monitoring-graphic"></div>
+        </section>
+
+        <section class="audit-trails">
+            <h2>Audit Trails</h2>
+            <p>Maintain detailed logs of all waste handling activities for audit purposes.</p>
+            <button onclick="viewAuditTrail()">View Audit Trail</button>
+            <div id="auditTrail" class="hidden">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </section>
+
+        <section class="compliance-reporting">
+            <h2>Compliance Reporting</h2>
+            <p>Generate and submit reports to regulatory bodies with ease.</p>
+            <button onclick="generateReport()">Generate Report</button>
+        </section>
+
+        <section class="document-management">
+            <h2>Document Management</h2>
+            <p>Store and manage all your compliance-related documents securely.</p>
+            <input type="file" id="uploadDocument" accept=".pdf,.docx">
+            <button onclick="uploadDocument()">Upload Document</button>
+            <div id="documentList"></div>
+        </section>
+
+        <section class="alerts-notifications">
+            <h2>Alerts & Notifications</h2>
+            <p>Receive alerts for upcoming regulatory deadlines or compliance breaches.</p>
+            <button onclick="setAlert()">Set Alert</button>
+        </section>
+    </div>
+
+    <script src="Naman.js"></script>
+</body>
+</html>

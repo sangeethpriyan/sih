@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Maintenance</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .section div {
+            background-color: #4caf50;
+            padding: 20px;
+            border-radius: 8px;
+            width: 48%;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .section div:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%) rotate(45deg);
+            animation: rotateBg 15s linear infinite;
+        }
+
+        .section div h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .section div p {
+            font-size: 1.2em;
+            z-index: 1;
+            position: relative;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button-container button {
+            background-color: #008cba;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #005f75;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotateBg {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                flex-direction: column;
+            }
+
+            .section div {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        .details-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            justify-content: space-around;
+        }
+
+        .details-container .detail-card {
+            background-color: #ff9800;
+            color: white;
+            border-radius: 8px;
+            width: 45%;
+            padding: 20px;
+            margin: 10px 0;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .details-container .detail-card:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%) rotate(45deg);
+            animation: rotateBg 15s linear infinite;
+        }
+
+        .details-container .detail-card h4 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .details-container .detail-card p {
+            font-size: 1.1em;
+            z-index: 1;
+            position: relative;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Asset Maintenance</h2>
+
+        <div class="section">
+            <div>
+                <h3>Equipment Tracking</h3>
+                <p>Monitor the status and location of waste management equipment in real-time.</p>
+            </div>
+
+            <div>
+                <h3>Maintenance Scheduling</h3>
+                <p>Schedule regular maintenance for waste collection and processing equipment.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div>
+                <h3>Service Logs</h3>
+                <p>Maintain detailed logs of repairs, servicing, and replacements.</p>
+            </div>
+
+            <div>
+                <h3>Spare Parts Inventory</h3>
+                <p>Track and manage spare parts inventory to avoid downtime.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div style="width: 100%;">
+                <h3>Alerts for Preventive Maintenance</h3>
+                <p>Receive notifications for upcoming preventive maintenance tasks.</p>
+            </div>
+        </div>
+
+        <div class="details-container">
+            <div class="detail-card">
+                <h4>Equipment Tracking Details</h4>
+                <p>View real-time data on the location and status of all equipment.</p>
+            </div>
+
+            <div class="detail-card">
+                <h4>Maintenance Scheduling Details</h4>
+                <p>Access the maintenance calendar and schedule upcoming tasks.</p>
+            </div>
+
+            <div class="detail-card">
+                <h4>Service Logs Details</h4>
+                <p>Review past service records and upcoming service tasks.</p>
+            </div>
+
+            <div class="detail-card">
+                <h4>Spare Parts Inventory Details</h4>
+                <p>Check current inventory levels and request new parts if needed.</p>
+            </div>
+
+            <div class="detail-card">
+                <h4>Preventive Maintenance Alerts</h4>
+                <p>Get notified of tasks that need attention to prevent equipment failures.</p>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button onclick="window.location.href='http://127.0.0.1:5500/asset-maintainence-dashboard.html'">Go to Dashboard</button>
+        </div>
+    </div>
+</body>
+
+</html>

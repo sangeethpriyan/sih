@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hazardous Waste Management</title>
+    <link rel="stylesheet" href="Hazardous mangement.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Hazardous Waste Management</h1>
+        </header>
+
+        <section class="segregation">
+            <h2>Waste Segregation</h2>
+            <div class="waste-types">
+                <div class="waste-type hazardous">Hazardous</div>
+                <div class="waste-type non-hazardous">Non-Hazardous</div>
+            </div>
+        </section>
+
+        <section class="handling-procedures">
+            <h2>Special Handling Procedures</h2>
+            <p>Follow these guidelines to safely handle hazardous materials...</p>
+            <button class="procedure-button">View Procedures</button>
+        </section>
+
+        <section class="safety-audits">
+            <h2>Safety Audits</h2>
+            <div class="audit-progress">
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+                <p>Next audit in: <span class="audit-days">5</span> days</p>
+            </div>
+        </section>
+
+        <section class="inventory-management">
+            <h2>Inventory Management</h2>
+            <div class="inventory-controls">
+                <input type="text" id="search" placeholder="Search Inventory..." />
+                <button id="filter-hazardous">Show Hazardous</button>
+                <button id="filter-non-hazardous">Show Non-Hazardous</button>
+                <button id="show-all">Show All</button>
+            </div>
+            <table class="inventory-table">
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </table>
+            <form id="inventory-form">
+                <input type="text" id="itemName" placeholder="Item Name" required />
+                <input type="number" id="itemQuantity" placeholder="Quantity" required />
+                <input type="text" id="itemStatus" placeholder="Status" required />
+                <button type="submit">Add Item</button>
+            </form>
+        </section>
+
+        <section class="emergency-response">
+            <h2>Emergency Response</h2>
+            <button class="emergency-button">Trigger Emergency Protocol</button>
+        </section>
+    </div>
+
+    <script src="Hazardous management.js"></script>
+</body>
+</html>
